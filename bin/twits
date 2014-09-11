@@ -1,0 +1,105 @@
+#!/usr/bin/env node
+/*
+* Local Variables:
+* mode: Javascript
+* End:
+* // emacs hint to show this file as Javascript
+*/
+
+// setup command line options, pass to module
+// write output to file or to stdout
+
+var fs = require('fs-extra'),
+path = require('path');
+
+var startTime = Date.now();
+
+var opts = require('nomnom')
+  .script(path.basename(__filename))
+  .option('auth', {
+    abbr : 'a',
+    default : './.twitter-auth.json',
+    help : 'Location of Twitter authentication information JSON file'
+  })
+  .option('destination', {
+    abbr : 'f',
+    default : './dist',
+    help : 'Location for output .json files'    
+  })
+  .option('max-suggestions', {
+    abbr : 's',
+    default : 100,
+    help : 'Max number of suggestion categories to resolve from twitter'
+  })
+  .option('max-users', {
+    abbr : 'u',
+    default : 200,
+    help : 'Max number of suggestion users to resolve from twitter'
+  })
+  .option('verbose', {
+    abbr : 'v',
+    flag: true,
+    default: false,
+    help : 'Show status updates in console'
+  })
+  .parse();
+
+function verbose(){
+  if(opts.verbose) console.log.apply(console, arguments);
+}
+
+verbose('starting twits');
+
+var configuration = {};
+fs.readJson(opts.auth, function(err, auth){
+  if(err) return console.error(err);
+  
+  fs.removeSync(opts.destination);
+  fs.ensureDirSync(opts.destination);
+
+  
+  function writeJson(prefix, data){
+    var filename = path.join(opts.destination, prefix + '.json');
+    fs.writeJson(
+      filename,
+      data,
+      function(err){
+	if(err) return console.error(err);
+	else verbose('wrote file %s (%s)', filename, data.name);
+      });
+  }
+
+  function writeUserJson(err, data){
+    if(err) return console.error(err);
+    writeJson(data.id, data);
+  }
+
+  var suggestions = [];
+
+  require('..')({
+    auth : auth,
+    maxSuggestions : opts['max-suggestions'],
+    maxUsers : opts['max-users'],
+    verbose : opts.verbose,
+    suggestion : function(err, data){
+      if(err) return console.error(err);
+      suggestions.push(data);
+    },
+    user : writeUserJson
+  })(function(err){
+    if(err) return console.error(err);
+
+    fs.writeJson(
+      path.join(opts.destination, 'suggestions.json'),
+      suggestions,
+      function(err){
+	if(err) return console.error(err);
+	else verbose('Wrote suggestions file');
+
+	verbose('done, process took %d minutes', (((Date.now() - startTime)/1000/60).toFixed(2)));
+
+      });
+  });  
+});
+
+

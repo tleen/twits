@@ -1,0 +1,34 @@
+{
+  "name": "twits",
+  "version": "0.0.0",
+  "description": "Module and command line utility for downloading top recommended twitter users and their latest tweets.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tleen/twits.git"
+  },
+  "keywords": [
+    "twitter",
+    "API",
+    "JSON"
+  ],
+  "author": "Thomas Leen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tleen/twits/issues"
+  },
+  "dependencies" : {
+    "async" : "0.9.0",
+    "fs-extra" : "0.11.1",
+    "lodash" : "2.4.1",
+    "nomnom" : "1.8.0",
+    "twit" : "1.1.18"
+  },
+  "devDependencies" : {
+    "grunt" : "0.4.5",
+    "grunt-contrib-jshint" : "0.10.0"
+  }
+}
