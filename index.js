@@ -68,7 +68,6 @@ module.exports = function(config){
 	var userPick =  _.partialRight(_.pick, 'name', 'id', 'profile_image_url', 'screen_name');
 	var tweetPick =  _.partialRight(_.pick, 'created_at', 'id', 'text');
 
-	// temp 
 	data.slice(0, configuration.maxSuggestions).forEach(function(s){
 	  var name = s.name;
 	  var slug = s.slug;
