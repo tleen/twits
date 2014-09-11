@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+'use strict';
 /*
 * Local Variables:
 * mode: Javascript
@@ -10,7 +11,8 @@
 // write output to file or to stdout
 
 var fs = require('fs-extra'),
-path = require('path');
+path = require('path'),
+pkg = require('../package.json');
 
 var startTime = Date.now();
 
@@ -36,8 +38,15 @@ var opts = require('nomnom')
     default : 200,
     help : 'Max number of suggestion users to resolve from twitter'
   })
-  .option('verbose', {
+  .option('version', {
     abbr : 'v',
+    flag: true,
+    default: pkg.version,
+    help : 'Show version',
+    callback: function(){ return pkg.version; }
+  })
+  .option('verbose', {
+    abbr : 'vv',
     flag: true,
     default: false,
     help : 'Show status updates in console'
