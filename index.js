@@ -5,11 +5,12 @@ _ = require('lodash');
 module.exports = function(config){
   'use strict';
 
-  var dummyCallback = function(data, callback){
+  var dummyCallback = function(data, callback){    
     return callback(null);
   };
 
   var configuration = _.defaults(
+    {},
     config,
     {
       auth : null,
@@ -26,7 +27,7 @@ module.exports = function(config){
 
 
   // check for auth object
-  if(!configuration.auth) throw new Error('Missing Twitter authorization info as configuration.auth');
+  if(!_.isObject(configuration.auth)) throw new Error('Missing Twitter authorization information object as configuration.auth');
 
   // ensure auth object has required info
   var diff = _.difference(['consumer_key','consumer_secret','access_token','access_token_secret'], _.keys(configuration.auth));
