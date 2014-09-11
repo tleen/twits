@@ -1,4 +1,3 @@
-
 var async = require('async'),
 twit = require('twit'),
 _ = require('lodash');
