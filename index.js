@@ -5,16 +5,14 @@ _ = require('lodash');
 module.exports = function(config){
   'use strict';
 
-  var dummyCallback = function(data, callback){    
-    return callback(null);
-  };
+  var dummyCallback = function(err, data){};
 
   var configuration = _.defaults(
     {},
     config,
     {
       auth : null,
-      suggestions : dummyCallback,
+      suggestion : dummyCallback,
       user : dummyCallback,
       maxSuggestions : 100,
       maxUsers : 200,
