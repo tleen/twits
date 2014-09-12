@@ -3,7 +3,7 @@
 /* global describe, it, should */
 
 var fs = require('fs-extra'),
-T = require('..'),
+t = require('..'),
 _ = require('lodash');
 
 // if tests are run too fast T will hit the twitter rate limit
@@ -14,13 +14,13 @@ var verbose = false;
 
 describe('missing authorization information', function(){
   it('should throw an error', function(){
-    T.should.throw(/^Missing Twitter/);
+    t.should.throw(/^Missing Twitter/);
   });
 });
 
 describe('partial authorization information', function(){
   it('should throw an error', function(){
-    T.bind(null,{
+    t.bind(null,{
       auth : {
 	consumer_key : '',
 	consumer_secret : '',
@@ -78,7 +78,7 @@ describe('get suggestions', function(){
   this.timeout(apiTimeout);
   it('should get 3 suggestions', function(done){
     var suggestionCount = 0;
-    new T({
+    t({
       auth : authorization,
       maxSuggestions : 3,
       maxUsers : 0,
@@ -97,7 +97,7 @@ describe('get users', function(){
   this.timeout(apiTimeout);
   it('should get 25 users each for 3 suggestions', function(done){
     var userCount = 0;
-    new T({
+    t({
       auth : authorization,
       maxSuggestions : 3,
       maxUsers : 25,
