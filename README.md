@@ -104,7 +104,7 @@ Show (in console) the version of the module and exit.
 
 #### Others
 * **max-suggestions** (-s)
-* **max-users* (-u)
+* **max-users** (-u)
 * **verbose** (-v)
 
 Same as defined for the module.
