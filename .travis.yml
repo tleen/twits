@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+- '0.10'
+notifications:
+  email:
+  - tl@thomasleen.com
+env:
+  global:
+  - secure: Za4W156MKeWaTMPaxWao3gNqaYen+U8j628vP2SjXXRB7cs3WkHTww9RKyLmgJFY4JuDPZnudi5HSzePvEBpz5wmC0liZ4mKdl2shqt4KdOZ6KvefgjU3TxGOVqeXEc8Rd3aJ77MCNyw/Z1dCTAo98sXrn5R6Y+zYNqqyGHEOu8=
+  - secure: JbEMG8eKZ9bE8yVuMcURNQBLovvPw1bzfUT4Z01UDyPA4LjjyVfIrFuXSOLo6DjBDkiGdnPlnTS8cQ6dSghw3z94joF74F/7TdzwFL8CtbuZCze/J5oOw5uMNhW4k69psv80UIhK4Tf1C4JpSF6w+zYkgMsd1rtKedG8fbREVHg=
+  - secure: NtgQBHln7ci7Aon2OlktFZwwjy2TyyWLn9ZZORUexmxL/7032U9Z6jajLBLubwztQeZKpBmbxYi0WT02UP6jAmQ/+EJKj1RZQnSpm0N8HVaRZu2h/7NKatF40QuJXf2QfJQk/QSaee/WN01KG3rT7VJXbfGIPcnxmYI1+6eUwvY=
+  - secure: i5cgXxSbjGfxbLyhqiomwMV9aUJ6dH8BP5jgwivOfalCctEUwodFB56STdyTTsnQ0Jhz8ZVkxoH8qwK4Q+9Xud8EgldBTcIa6GSqSF1kK6Xqz+iZ3+qsC0FkqQqS6dWiXZrOyH2uKCHPtL75Maz4nMf8y1yWP61NTIxLzXX7rpw=
