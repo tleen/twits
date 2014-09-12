@@ -3,13 +3,13 @@ twits
 
 [![Build Status](https://travis-ci.org/tleen/twits.png?branch=master)](https://travis-ci.org/tleen/twits)
 
-Utility for downloading top recommended twitter users and some of their tweets. The module will fetch a lists of top twitter suggestion categories, and download user information & latest tweets for the users in those suggestions. The **command line interface** to the module will download the suggestion list and user information to .json files.
+Utility for downloading top recommended twitter users and some of their tweets. The [module](#user-content-module) will fetch a lists of top twitter suggestion categories, and download user information & latest tweets for the users in those suggestions. The [command line interface](#user-content-cli) to the module will download the suggestion list and user information to .json files.
 
 ## Module
 
 ```javascript
 
-var t = require('..');
+var t = require('twits');
 
 t({
   auth : require('../.twitter-auth.json'),
@@ -49,7 +49,7 @@ done
 
 *List module options here*
 
-## Cli
+## CLI
 
 ```shell
 ./bin/twits --max-suggestions=5 --max-users=10 --destination=/tmp/twitter-data
