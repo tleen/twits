@@ -18,7 +18,7 @@
     "url": "https://github.com/tleen/twits/issues"
   },
   "scripts" : {
-    "test" : "node_modules/grunt-cafe-mocha/node_modules/mocha/bin/mocha --require should test/index.js"
+    "test" : "node_modules/grunt-cafe-mocha/node_modules/mocha/bin/mocha --bail --require should test/index.js"
   },
   "dependencies" : {
     "async" : "0.9.0",
