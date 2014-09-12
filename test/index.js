@@ -10,6 +10,7 @@ _ = require('lodash');
 // timeout should be more than 15 minutes because that is the max
 // wait window for suggestions
 var apiTimeout = (1000 * 60 * 16);
+var verbose = false;
 
 describe('missing authorization information', function(){
   it('should throw an error', function(){
@@ -33,7 +34,8 @@ describe('partial authorization information', function(){
 var authorization = {};
 
 describe('authorization object', function(){
-  if(process.env.TRAVIS || true){
+  if(process.env.TRAVIS){
+    verbose = true;
     it('should have authorization variables in the process.env', function(done){
             
       
@@ -82,7 +84,8 @@ describe('get suggestions', function(){
       maxUsers : 0,
       suggestion : function(err, data){
 	suggestionCount++;
-      }
+      },
+      verbose : verbose
     })(function(err){
       suggestionCount.should.equal(3);
       return done(err);
@@ -100,7 +103,8 @@ describe('get users', function(){
       maxUsers : 25,
       user : function(err, data){
 	userCount++;
-      }
+      },
+      verbose : verbose
     })(function(err){
       userCount.should.equal(75);
       return done(err);
