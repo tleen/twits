@@ -72,7 +72,11 @@ module.exports = function(config){
 	  queue.push(
 	    {name : 'lookup users for suggestion: ' + name, endpoint : 'users/suggestions/:slug', data :  {slug : slug}},
 	    function(err, data){
-	      if(err) return console.error(err);
+	      if(err){
+		configuration.suggestion(err);
+		console.error(err);
+		return;
+	      }
 	      var users = _.map(data.users, userPick);
 	      verbose('found %d users for %s', users.length, name);
 
@@ -86,6 +90,7 @@ module.exports = function(config){
 		  function(err, data){
 		    if(err){
 		      console.error(err);
+		      configuration.user(err);
 		      return;
 		    }
 		    var tweets = _.map(data, tweetPick);
