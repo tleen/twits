@@ -1,5 +1,6 @@
 'use strict';
-/* global describe, it */
+/* jshint expr: true */
+/* global describe, it, should */
 
 var fs = require('fs-extra'),
 T = require('..'),
@@ -32,16 +33,17 @@ describe('partial authorization information', function(){
 var authorization = {};
 
 describe('authorization object', function(){
-  if(process.env.TRAVIS){
+  if(process.env.TRAVIS || true){
     it('should have authorization variables in the process.env', function(done){
+            
       
-      console.log('looking for foo in process.env:', process.env['foo']); 
-      
-      process.env.should.have.properties(
-	'TWITTER_CONSUMER_KEY',
-	'TWITTER_CONSUMER_SECRET',
-	'TWITTER_ACCESS_TOKEN',
-	'TWITTER_ACCESS_TOKEN_SECRET');
+     ['TWITTER_CONSUMER_KEY',
+      'TWITTER_CONSUMER_SECRET',
+      'TWITTER_ACCESS_TOKEN',
+      'TWITTER_ACCESS_TOKEN_SECRET'].forEach(function(key){
+	(process.env[key] !== undefined).should.be.true;
+	process.env[key].should.be.ok.and.be.a.String;
+      });
       
       authorization = {
 	consumer_key : process.env.TWITTER_CONSUMER_KEY, 
