@@ -35,6 +35,8 @@ describe('authorization object', function(){
   if(process.env.TRAVIS){
     it('should have authorization variables in the process.env', function(done){
       
+      console.log('looking for foo in process.env:', process.env['foo']); 
+      
       process.env.should.have.properties(
 	'TWITTER_CONSUMER_KEY',
 	'TWITTER_CONSUMER_SECRET',
